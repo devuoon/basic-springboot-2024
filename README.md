@@ -19,6 +19,7 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
     - DB 연동이 쉽다.
 
   - MVC
+
     <img src="https://github.com/devuoon/basic-springboot-2024/assets/104570636/89a0d7a6-638e-4957-ae83-ac37ca97a659" style="width:300px;">
 
 - Spring Boot 개발환경 설정
@@ -76,6 +77,7 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
     - VS Code 재시작
 
   - 프로젝트 생성 후
+
     - /build.gradle 확인
     - src/main/resources/application.properties(또는 .yml) 확인
     - src/java/groupid/arifactid/Java 소스파일 위치, 작업
@@ -85,9 +87,12 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
       - 터미널에서 .\gradlew.bat 실행
       - Gradle for java(코끼리 아이콘) > Tasks > Build > Build play icon(Run task) 실행
     - Sprign Boot Dashboard
+
       - Apps > spring01 Run | Debug 중에서 하나 아이콘 클릭 서버 실행
       - 디버그로 실행해야 Hot code replace 가 동작
+
         <img src="https://github.com/devuoon/basic-springboot-2024/assets/104570636/c1f31a6b-3fcb-4449-92f7-ff3274ccacea" style="width:300px;">
+
     - 브라우저 변경 설정
       - 설정 (ctrl + ,) > browser > Spring Dashboard Open with 'Internal' -> 'external'로 변경
       - chrome 을 기본브라우저 사용 추천
