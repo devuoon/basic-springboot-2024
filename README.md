@@ -20,7 +20,7 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
 
   - MVC
 
-    <img src="https://github.com/devuoon/basic-springboot-2024/assets/104570636/89a0d7a6-638e-4957-ae83-ac37ca97a659" style="width:300px;">
+    <img src="https://github.com/devuoon/basic-springboot-2024/assets/104570636/89a0d7a6-638e-4957-ae83-ac37ca97a659" style="width:700px;">
 
 - Spring Boot 개발환경 설정
 
