@@ -9,6 +9,7 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
   - 개발환경, 개발 난이도를 낮추는 작업
   - Servlet > EJB > JSP > Spring(부흥기) > Spring Boot (끝판왕)
   - 장점
+
     - Spring의 기술을 그대로 사용가능(마이그레이션 간단)
     - JPA를 사용하면 ERD나 DB설계를 하지 않고도 손쉽게 DB 생성
     - Tomcat Webserver가 내장(따로 설치 필요 X)
@@ -16,6 +17,9 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
     - JUnit 테스트, Log4J2 로그도 모두 포함
     - JSP, Thymeleaf, Mustache 등.. 편하게 사용
     - DB 연동이 쉽다.
+
+  - MVC
+    <img src="https://github.com/devuoon/basic-springboot-2024/assets/104570636/89a0d7a6-638e-4957-ae83-ac37ca97a659" style="width:300px;">
 
 - Spring Boot 개발환경 설정
 
@@ -83,6 +87,7 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
     - Sprign Boot Dashboard
       - Apps > spring01 Run | Debug 중에서 하나 아이콘 클릭 서버 실행
       - 디버그로 실행해야 Hot code replace 가 동작
+        <img src="https://github.com/devuoon/basic-springboot-2024/assets/104570636/c1f31a6b-3fcb-4449-92f7-ff3274ccacea" style="width:300px;">
     - 브라우저 변경 설정
       - 설정 (ctrl + ,) > browser > Spring Dashboard Open with 'Internal' -> 'external'로 변경
       - chrome 을 기본브라우저 사용 추천
