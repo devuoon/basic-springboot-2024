@@ -100,14 +100,40 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
 ## 2일차
 
 - Oracle 도커로 설치
-  - 설치되어 있는 Oracle 삭제
+
+  - Docker는 Virtual Machine을 업그레이드한 시스템
+  - 윈도우 서비스 내(services.msc) oracle 관련 서비스 삭제
+  - Docker에서 Oracle 이미지 컨테이너를 다운로드 후 실행
+  - Docker 설치시 오류 Docker Dsktop - WSL Update failed
+    - Docker Desktop 실행종료 후
+    - Windows 업데이트 실행 최신판 재부팅
+    - https://github.com/microsoft/WSL/releases, wsl.2.x.x.x64.msi 다운로드 설치한 뒤
+    - Docker Desktop 재실행
+  - Oracle 최신판 설치
+
+  ```shell
+  > docker --version
+  > docker pull container-registry.oracle.com/database/free:latest
+  latest: ...
+  ```
+
 - Database 설정
   - H2 DB : Spring Boot에서 손쉽게 사용한 Inmemory DB, oracle, Mysql, SQLServer과 쉽게 호환
   - Oracle : 운영시 사용할 DB
   - MySQL : Optional 설명할 DB
   - Oracle PKNUSB / pknu_p@ss 로 생성
-    콘솔
-    ```shell
-    > sqlplus system/password
-    SQL>
-    ```
+    - 콘솔(도커/일반 Oracle)
+      ```shell
+      > sqlplus system/password
+      SQL> select name from v$database;
+      // 서비스명 확인
+      // 최신 버전에서 사용자 생성 시 C## prefix 방지 쿼리
+      SQL> ALTER SESSION SET "_ORACLE_SCRIPT"=true;
+      // 사용자 생성
+      SQL> create user pknusb identified by "pknu_p@ss";
+      // 사용자 권한
+      SQL> grant CONNECT, RESOURCE, CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE VIEW to pknusb;
+      // 사용자 계정 테이블 공간 설정, 공간 쿼터 할당
+      SQL> alter user pknusb default tablespace users;
+      SQL> alter user pknusb quota unlimited on users;
+      ```
