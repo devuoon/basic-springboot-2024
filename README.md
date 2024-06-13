@@ -172,3 +172,7 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
   mybatis.mapper-locations=classpath:mapper/**/*.xml
   mybatis.type-aliases-package=com.devuoon.spring02.domain
   ```
+
+  - MyBatis 적용
+    - Spring 이전 resource/WEB-INF 위치에 root-context.xml에 DB, MyBatis 설정
+    - SpringBoot 이후 application.properties + Config.java로 변경
