@@ -118,6 +118,7 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
   ```
 
 - Database 설정
+
   - H2 DB : Spring Boot에서 손쉽게 사용한 Inmemory DB, oracle, Mysql, SQLServer과 쉽게 호환
   - Oracle : 운영시 사용할 DB
   - MySQL : Optional 설명할 DB
@@ -137,3 +138,37 @@ Java 빅데이터 개발자과정 Spring boot 학습 리포지토리
       SQL> alter user pknusb default tablespace users;
       SQL> alter user pknusb quota unlimited on users;
       ```
+
+- Spring Boot + MyBatis
+
+  - application name : apring02
+  - Spring Boot 3.3.x 에는 MyBatis 없음
+  - Dependency 중 DB(H2, Oracle, MySQL)가 선택되어 있으면 웹서버 실행이 안됨
+  - build.gradle 확인
+
+  ```properties
+  ## 포트변경
+  server.port=8091
+
+  ## 로그색상
+  spring.output.ansi.enabled=always
+
+  ## 수정사항이 있으면 서버 자동 재빌드 설정
+  spring.devtools.livereload.enabled = true
+  spring.devtools.restart.enabled = true
+
+  ## 로그레벨 설정
+  logging.level.org.springframework=info
+  logging.level.org.zerock=debug
+
+  ## Oracle 설정
+  spring.datasource.driver-class-name=oracle.jdbc.OracleDr
+  spring.datasource.url=jdbc:oracle:thin:@localhost:1521:X
+  spring.datasource.username=pknusb
+  spring.datasource.password=pknu_p@ss
+
+  ## MyBatis 설정
+  # mapper 폴더 밑에 여러가지 폴더가 내재, 확장자는 .xml이
+  mybatis.mapper-locations=classpath:mapper/**/*.xml
+  mybatis.type-aliases-package=com.devuoon.spring02.domain
+  ```
