@@ -1,4 +1,4 @@
-package main.java.com.devuoon.spring02.mapper;
+package com.devuoon.spring02.mapper;
 
 import java.util.List;
 
