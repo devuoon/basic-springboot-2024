@@ -1,20 +1,21 @@
-package main.java.com.devuoon.spring02.domain;
+package com.devuoon.spring02.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+// import lombok.Getter;
+// import lombok.Setter;
+// import lombok.ToString;
 
+@Data
 public class Todo {
-  private Integer tno;
+    private int tno;
+    
+    private String title;
 
-  private String title;
+    private LocalDateTime dueDate;
 
-  private LocalDateTime dueDate;
+    private String writer;
 
-  private String writer;
-
-  private Integer isDone;
-  
+    private int isDone;
 }
