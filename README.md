@@ -223,3 +223,40 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     7. 사용자 접근하는 컨트롤러 @RestController 클래스 생성 -> @Controller 변경 가능
     8. (Controller) ~~경우에 따라 @SpringBootApplication 클래스에 SqlSessionFactory 빈을 생성 메서드 작성~~
     9. (View) /resource/templates/ Thymeleaf html 생성, 작성
+
+  ## 4일차
+
+  - Spring Boot JPA + Oracle + Thymeleaf + React
+
+    - JPA -> DB 설계를 하지 않고 엔티티 클래스를 DB로 자동생성 해주는 기술, Query로 만들 필요 X
+    - H2 -> Oracle, MySQL, SQLServer등 과 달리 Inmemory DB, 스프링 부트 실행되면 같이 실행되는 DB
+      개발편의성, 다른 DB로 전환시 아주 편리, 개발하는 동안 사용을 추천
+    - Thymeleaf -> JSP의 단점 복잡한 템플릿형태 + 스파게티코드를 해소해주는 템플릿
+    - Bootstrap -> 웹디자인 및 CSS의 혁신!! 커스터마이징도 가능
+    - 소셜로그인 -> 구글, 카카오, 네이버 등등 소셜로 로그인 기능
+    - React -> 프론트엔드를 분리, 백엔드 서버와 프론트엔드 서버 따로 관리
+
+  - Spring Boot JPA 프로젝트 생성
+
+    - 명령 팔레트로 시작, Spring Initialzr: Create a Gradle Project...
+    - Spring Boot version -> 3.2.6
+    - project language -> java
+    - Group Id -> com.devuoon
+    - Arifact Id -> backboard
+    - packaging type -> Jar
+    - Java version -> 17
+    - Dependency
+      1. Spring Boot DevTools
+      2. Lombok
+      3. Spring Web
+      4. Thymeleaf
+      5. Oracle Driver(later)
+      6. H2 Database(later)
+      7. Data JPA(later)
+    - spring03 폴더 내에서 **Generate into this folder**
+
+  - Spring Boot JPA 프로젝트 개발시작
+    1. build.gradle 디펜던시 확인
+    2. application.properties 기본설정 입력(포트번호, 로그색상, 자동재빌드, 로그레벨)
+    3. 각 기능별로 폴더를 생성(controller, service, entity...)
+    4. /controller/MainController.java 생성, 기본 기능 구현
