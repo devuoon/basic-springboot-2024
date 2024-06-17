@@ -1,4 +1,4 @@
-package com.devuoon.backboard;
+package com.springboot.backboard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
