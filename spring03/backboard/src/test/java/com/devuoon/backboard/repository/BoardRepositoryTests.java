@@ -9,15 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.devuoon.backboard.repository.BoardRepository;
 import com.devuoon.backboard.entity.Board;
 
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 import java.util.Optional;
-
-import javax.print.attribute.SupportedValuesAttribute;
 
 @SpringBootTest
 @Log4j2
