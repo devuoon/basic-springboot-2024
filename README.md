@@ -276,3 +276,23 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     12. /repository/ReplyRepository.java 빈 인터페이스(JpaRepository 상속) 생성
     13. application.properties ddl-auto=create -> ddl-auto=update 변경
     14. /test/.../repository/BoardRepositoryTests.java 생성. 테스트 메서드 작성
+
+## 5일차
+
+- Tip
+
+  - Java Test 중 OpenJDK 64-Bit Server BM warning: Sharing is 빨간색 경고가 뜨면
+  - Ctrl +, > Java Test Config 검색 > settings.json 편집
+
+    ```json
+      "java.test.config": {
+        "vmArgs": [
+          "-Xshare:off"
+        ]
+    }
+    ```
+
+  - 저장 후 실행
+
+  - Spring Boot JPA 프로젝트 개발 계속  
+    15. JUnit 테스트로 CRUD 확인 16. /service/BoardService.java 생성 후 getList() 메서드 작성 17. /controller/BoardController.java 생성 후 /board/list 실행할 수 있는 메서드 작성

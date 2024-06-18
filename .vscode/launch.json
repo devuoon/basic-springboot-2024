@@ -9,6 +9,16 @@
       "projectName": "spring02",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-BackboardApplication<backboard>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.devuoon.backboard.BackboardApplication",
+      "projectName": "backboard",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
