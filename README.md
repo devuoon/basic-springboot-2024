@@ -284,15 +284,21 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
   - Java Test 중 OpenJDK 64-Bit Server BM warning: Sharing is 빨간색 경고가 뜨면
   - Ctrl +, > Java Test Config 검색 > settings.json 편집
 
-    ```json
-      "java.test.config": {
-        "vmArgs": [
-          "-Xshare:off"
-        ]
-    }
-    ```
+  ```json
+    "java.test.config": {
+      "vmArgs": [
+        "-Xshare:off"
+      ]
+  }
+  ```
 
   - 저장 후 실행
-
-  - Spring Boot JPA 프로젝트 개발 계속  
-    15. JUnit 테스트로 CRUD 확인 16. /service/BoardService.java 생성 후 getList() 메서드 작성 17. /controller/BoardController.java 생성 후 /board/list 실행할 수 있는 메서드 작성
+  - Spring Boot JPA 프로젝트 개발 계속
+    1. JUnit 테스트로 CRUD 확인
+    2. /service/BoardService.java 생성 후 getList() 메서드 작성
+    3. /controller/BoardController.java 생성 후 /board/list 실행할 수 있는 메서드 작성
+    4. /templates/board/list.html 생성
+    - Thymeleaf 속성
+      - th:if="${board != null}"
+      - th:each="board : ${boardList}"
+      - th:text="${board.title}"
