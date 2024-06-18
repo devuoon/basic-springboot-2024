@@ -26,11 +26,14 @@ public class ReplyController {
   private final ReplyService replyService;
   private final BoardService boardService;
   
-  @PostMapping("/create/{bno}")
-  public String create(Model model, @PathVariable("bno") Long bno, @RequestParam (value = "content") String content) throws Exception {
-    Board board = this.boardService.getBoard(bno);
-    this.replyService.setReply(board, content);
-    log.info("ReplyController 댓글저장 처리 완료");
-    return String.format("redirect:/board/detail/%s", bno);
-  }
+   @PostMapping("/create/{bno}")
+    public String create(Model model, @PathVariable("bno") Long bno, @RequestParam(value = "content") String content)
+            throws Exception {
+        Board board = this.boardService.getBoard(bno);
+        this.replyService.setReply(board, content);
+        log.info("replyController 댓글저장 처리완료!!!");
+        return String.format("redirect:/board/detail/%s", bno);
+    }
+
 }
+
