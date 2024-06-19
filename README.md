@@ -326,4 +326,6 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
   ## 6일차
 
   - Spring Boot JPA 프로젝트 개발 계속
-    1.
+    1. (설정) build.gradle Thymeleaf 레이아웃 사용을 위한 디펜던시 추가
+    1. /templates/layout.html Thymeleafr로 레이아웃 템플릿 생성
+    1. list.html, detail.html 레이아웃 템플릿 적용
