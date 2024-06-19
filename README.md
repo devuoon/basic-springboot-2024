@@ -321,3 +321,9 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     - CDN 링크를 추가
     - http://www.getbootstrap.com 다운로드 후 압축 해제
     - bootstrap.min.css, bootstrap.min.js templates/static에 위치
+    12. /templates/board/list.html, detail.html 부트스트랩 적용
+
+  ## 6일차
+
+  - Spring Boot JPA 프로젝트 개발 계속
+    1.
