@@ -327,5 +327,13 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
   - Spring Boot JPA 프로젝트 개발 계속
     1. (설정) build.gradle Thymeleaf 레이아웃 사용을 위한 디펜던시 추가
-    1. /templates/layout.html Thymeleafr로 레이아웃 템플릿 생성
-    1. list.html, detail.html 레이아웃 템플릿 적용
+    2. /templates/layout.html Thymeleafr로 레이아웃 템플릿 생성
+    3. list.html, detail.html 레이아웃 템플릿 적용
+    4. /templates/layout.html에 Bootstrap CDN 적용
+    5. /templates/board/list.html에 게시글 등록버튼 추가
+    6. /templates/board/create.html 게시글 작성 페이지 생성
+    7. /controllers/BoardController.java create() GetMapping 메서드 작성
+    8. /service/BoardService.java setBoard() 작성
+    9. /controllers/BoardController.java create() PostMapping 메서드 작성
+    10. (문제) 아무내용을 안적어도 저장됨
+    11. (설정) build.gradle 입력값 검증 Spring Boot Validation 디펜던시 추가

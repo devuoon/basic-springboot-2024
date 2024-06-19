@@ -12,6 +12,11 @@ import com.devuoon.backboard.entity.Board;
 import com.devuoon.backboard.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 @RequestMapping("/board") // Restful URL은 /board로 시작
 @Controller
@@ -31,10 +36,23 @@ public class BoardController {
   }
 
    @GetMapping("/detail/{bno}")
-  public String detail(Model model, @PathVariable("bno") Long bno) throws Exception {
-    Board board = this.boardservice.getBoard(bno);
-    model.addAttribute("board", board);
+   public String detail(Model model, @PathVariable("bno") Long bno) throws Exception {
+     Board board = this.boardservice.getBoard(bno);
+     model.addAttribute("board", board);
 
-    return "board/detail";
-  }
+     return "board/detail";
+   }
+  
+   @GetMapping("/create")
+   public String create() {
+     return "board/create";
+   }
+   
+   @PostMapping("/create")
+   public String create(@RequestParam("title") String title, @RequestParam("content") String content) {
+       this.boardservice.setBoard(title, content);
+       return "redirect:/board/list";
+   }
+   
+   
 }
