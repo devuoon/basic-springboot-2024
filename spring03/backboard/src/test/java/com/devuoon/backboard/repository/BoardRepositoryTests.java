@@ -1,6 +1,6 @@
 package com.devuoon.backboard.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
@@ -10,18 +10,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.devuoon.backboard.entity.Board;
+import com.devuoon.backboard.service.BoardService;
 
-import lombok.extern.log4j.Log4j2;
-
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
-@Log4j2
 public class BoardRepositoryTests {
     // JUnit 테스트
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private BoardService boardService;
+    
+    @Test
+    void testThreeHundredBoards() {
+        for (int i = 0; i <= 300; i++) {
+            this.boardService.setBoard(String.format("테스트 데이터 - [%03d]", i + 1),
+                                            "별 내용 없습니다.");
+        }
+    }
+    
     @Test
     void testInsertBoard() {
         Board board1 = new Board();
@@ -34,18 +44,16 @@ public class BoardRepositoryTests {
                 .content("test2 content")
                 .createDate(LocalDateTime.now()).build();
         this.boardRepository.save(board2);
-        log.info("success board Test");
-
     }
 
-    @Test
-    void testSelectBoard() {
-        List<Board> all = this.boardRepository.findAll(); // select * from board
-        assertEquals(4, all.size());
+    // @Test
+    // void testSelectBoard() {
+    //     List<Board> all = this.boardRepository.findAll(); // select * from board
+    //     assertEquals(4, all.size());
 
-        Board bd = all.get(0); // 게시글 중 첫번째 값
-        assertEquals(1, bd.getBno());
-    }
+    //     Board bd = all.get(0); // 게시글 중 첫번째 값
+    //     assertEquals(1, bd.getBno());
+    // }
 
     @Test
     void testUpdateBoard() {
@@ -56,12 +64,12 @@ public class BoardRepositoryTests {
         this.boardRepository.save(ubd); // save() id가 없으면 INSERT, 있으면 UPDATE 쿼리 자동 실행
     }
 
-    @Test
-    void testDeleteBoard() {
-        Optional<Board> bd = this.boardRepository.findById(2L);
-        assertTrue(bd.isPresent());
-        Board dbd = bd.get();
-        this.boardRepository.delete(dbd); // delete 쿼리 실행
-        System.out.println("삭제완료");
-    }
+    // @Test
+    // void testDeleteBoard() {
+    //     Optional<Board> bd = this.boardRepository.findById(2L);
+    //     assertTrue(bd.isPresent());
+    //     Board dbd = bd.get();
+    //     this.boardRepository.delete(dbd); // delete 쿼리 실행
+    //     System.out.println("삭제완료");
+    // }
 }

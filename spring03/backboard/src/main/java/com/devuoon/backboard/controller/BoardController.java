@@ -4,19 +4,19 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;  // Correct import for Spring MVC Model
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.devuoon.backboard.entity.Board;
 import com.devuoon.backboard.service.BoardService;
+import com.devuoon.backboard.validation.BoardForm;
+import com.devuoon.backboard.validation.ReplyForm;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 @RequestMapping("/board") // Restful URL은 /board로 시작
 @Controller
@@ -35,8 +35,9 @@ public class BoardController {
     return "board/list"; // templates/board/list.html 렌더링해서 리턴하라
   }
 
+  // 댓글 검증을 추가하려면 매개변수로 ReplyForm을 전달!!
    @GetMapping("/detail/{bno}")
-   public String detail(Model model, @PathVariable("bno") Long bno) throws Exception {
+   public String detail(Model model, @PathVariable("bno") Long bno, ReplyForm replyform) throws Exception {
      Board board = this.boardservice.getBoard(bno);
      model.addAttribute("board", board);
 
@@ -44,15 +45,18 @@ public class BoardController {
    }
   
    @GetMapping("/create")
-   public String create() {
+   public String create(BoardForm boardForm) {
      return "board/create";
    }
    
    @PostMapping("/create")
-   public String create(@RequestParam("title") String title, @RequestParam("content") String content) {
-       this.boardservice.setBoard(title, content);
-       return "redirect:/board/list";
+   public String create(@Valid BoardForm boardForm,
+                        BindingResult bindingResult) {
+      if (bindingResult.hasErrors()) {
+        return "board/create"; // 현재 html에 그대로 머무르기
+      }
+      //this.boardservice.setBoard(title, content);
+      this.boardservice.setBoard(boardForm.getTitle(), boardForm.getContent());
+      return "redirect:/board/list";
    }
-   
-   
 }
