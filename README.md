@@ -371,5 +371,18 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     - /template/board/list.html에 게시글 번호 수정
   2. /template/board/list.html td 뱃지태그 추가
 
-  3. 스프링시큐리티
+  3. H2 -> Oracle로 DB 변경
+    - build.gradle, Oracle 디펜던시 추가
+    - application.properties Oracle 관련 설정 추가, H2 설정 주석처리
+    - 재시작
+
+
+  4. 스프링시큐리티
     - (설정) build.gradle 스프링 시큐리티 관련 디펜던시 추가
+    - (설정) Gradle 재빌드, 서버 실행
+    - user / 로그상 UUID 입력
+    - /security/SecurityConfig.java 보안설정 파일 생성, 작성 -> 시큐리티를 다시 풀어주는 일
+
+    - /entity/Member.java 생성
+    - /repository/MemberRepository.java 인터페이스 생성
+    - /service/MemberService.java 생성
