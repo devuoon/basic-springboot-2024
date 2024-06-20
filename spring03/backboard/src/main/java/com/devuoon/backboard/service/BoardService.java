@@ -12,8 +12,11 @@ import com.devuoon.backboard.repository.BoardRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList; 
 
 @RequiredArgsConstructor
 @Service
@@ -26,7 +29,9 @@ public class BoardService {
 
   // 페이징 되는 리스트 메서드
   public Page<Board> getList(int page) {
-     Pageable pageable = PageRequest.of(page, 10);
+     List<Sort.Order> sorts = new ArrayList<>();
+     sorts.add(Sort.Order.desc("createDate"));
+     Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
      return this.boardRepository.findAll(pageable);
   }
 

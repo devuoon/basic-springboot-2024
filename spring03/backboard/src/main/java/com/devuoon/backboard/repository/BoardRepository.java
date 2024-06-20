@@ -20,5 +20,7 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 
     // 페이징용 JPA 쿼리 자동생성 인터페이스 메서드 작성
     @SuppressWarnings("null")   // 경고 메시지 없애주는 어노테이션
+    //select b1_0.bno,b1_0.content,b1_0.create_date,b1_0.title from board b1_0 offset 0 rows fetch first 10 rows only 쿼리를 만들어서 실행
+    
     Page<Board> findAll(Pageable pageable);
 }
