@@ -354,4 +354,13 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
 ## 7일차
 - Spring Boot JPA 프로젝트 개발 계속
-  - 
+  0. 개념
+  ```sql
+    -- Oracle 전용(11g 이하는 이 쿼리가 동작안함)
+    select b1_0.bno,b1_0.content,b1_0.create_date,b1_0.title from board b1_0 offset 0 rows fetch first 10 rows only
+  ```
+  1.  페이징
+    - /repository/BoardRepository.java findAll(pageable) 인터페이스 메서드 작성
+    - /service/BoardService.java getList(page) 메서드 작성
+    - /controller/BoardController.java list() 메서드 수정
+    - /templates/board/list.html boardList -> paging 변경

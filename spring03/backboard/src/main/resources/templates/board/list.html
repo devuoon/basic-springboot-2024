@@ -9,7 +9,7 @@
         <th></th>
       </thead>
       <tbody>
-        <tr th:each="board, loop : ${boardList}">
+        <tr th:each="board, loop : ${paging}">
           <td th:text="${loop.count}"></td>
           <td>
             <a

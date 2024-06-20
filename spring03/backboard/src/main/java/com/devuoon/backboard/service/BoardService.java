@@ -4,10 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.devuoon.backboard.entity.Board;
 import com.devuoon.backboard.repository.BoardRepository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +22,12 @@ public class BoardService {
 
   public List<Board> getList() {
     return this.boardRepository.findAll();
+  }
+
+  // 페이징 되는 리스트 메서드
+  public Page<Board> getList(int page) {
+     Pageable pageable = PageRequest.of(page, 10);
+     return this.boardRepository.findAll(pageable);
   }
 
   public Board getBoard(Long bno) throws Exception {
