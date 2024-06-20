@@ -368,3 +368,8 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     - /templates/board/list.html boardList -> paging 변경
     - /templates/board/list.html 하단 페이징 버튼 추가, thymeleaf 기능추가
     - /service/BoardService.java getList() 최신순 역정렬로 변경
+    - /template/board/list.html에 게시글 번호 수정
+  2. /template/board/list.html td 뱃지태그 추가
+
+  3. 스프링시큐리티
+    - (설정) build.gradle 스프링 시큐리티 관련 디펜던시 추가
