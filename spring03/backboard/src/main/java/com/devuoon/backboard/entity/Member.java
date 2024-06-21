@@ -1,17 +1,24 @@
 package com.devuoon.backboard.entity;
 
-import groovy.transform.builder.Builder;
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
+
+import com.devuoon.backboard.security.MemberRole;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
 @Builder
-
 public class Member {
   
   @Id
@@ -25,5 +32,14 @@ public class Member {
   private String email;
 
   private String password;
+
+   @CreatedDate
+    @Column(name="regDate", updatable = false)
+    private LocalDateTime regDate; // 글생성일
+
+
+  @Enumerated(EnumType.STRING) //Enum 타입이 STRING "ROLE_ADMIN", "ROLE_USER" 때문
+  @Column(length = 12)
+  private MemberRole role;
 
 }
