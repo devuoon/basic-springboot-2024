@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.devuoon.backboard.common.NotFoundException;
 import com.devuoon.backboard.entity.Member;
 import com.devuoon.backboard.repository.MemberRepository;
 import com.devuoon.backboard.security.MemberRole;
@@ -35,11 +36,12 @@ public class MemberService {
         return member;
     }
 
+    // 사용자를 가져오는 메서드
     public Member getMember(String username) throws Exception {
         Optional<Member> member = this.memberRepository.findByUsername(username);
         if(member.isPresent())
             return member.get();
         else 
-            throw new Exception("");
+            throw new NotFoundException("Member Not found");
     }
 }

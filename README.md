@@ -417,8 +417,17 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
         - /template/layout.html 로그인/로그아웃 토글 메뉴 추가
         
       3. 게시글 작성자 추가
-        - /entity/Board.java, /entity/Reply.java에 작성자 변수(속성) 추가
-        - /service/MemberService.java getMember() 메서드
-        - (Tip) default Exception으로 예외를 처리하면 메서드 뒤에 항상 throws  Exception을 적어줘야 함.
-        - /common/DataNotFoundException.java 생성 -> throws Exception 쓰는데 반영
-        
+      - /entity/Board.java, /entity/Reply.java에 작성자 변수(속성) 추가
+      - /service/MemberService.java getMember() 메서드
+      - (Tip) default Exception으로 예외를 처리하면 메서드 뒤에 항상 throws Exception을 적어줘야 함.
+      - /common/NotFoundException.java 생성 -> throws Exception 쓰는데 반영
+      - /service/ReplyService.java setReplty() 사용자 추가
+      - /controller/ReplyController.java 오류나는 setReply() 파라미터 수정
+      - /service/BoardService.java ..
+      - /controller/BoardController.java setBoard() 사용자 추가
+      - /controller/ 작성하는 get/post 메서드에 @PreAuthorize 어노테이션 추가
+      - /config/SecurityConfig.java @PreAuthorize 동작하도록 설정 추가
+      - /templates/board/detail.html 답변 textarea 로그인전, 로그인후 구분
+      - /templates/board/list.html table 태그에 작성자 컬럼 추가
+      - /teamplates/board/detail.html 게시글 작성자, 댓글 작성자 표시
+      
