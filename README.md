@@ -411,4 +411,4 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
         - /templates/member/login.html
         - /repository/MemberRepository.java find* 메서드 추가
         - /controller/MemberController.java login Get/Post 메서드 작성
-        - /controller/
+        - 로그인은 post를 사용하지 않고, Spring Security가 지원하는 UserDetailsService클래스 사용
