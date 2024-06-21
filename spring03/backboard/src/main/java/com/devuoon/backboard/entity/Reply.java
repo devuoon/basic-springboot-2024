@@ -35,6 +35,10 @@ public class Reply {
   @Column(name = "createDate", updatable = false)
   private LocalDateTime createDate;
 
+  // 사용자가 여러개의 게시글을 작성할 수 있다. 다대일 설정
+  @ManyToOne
+  private Member writer;
+
   //중요, RelationShip
   @ManyToOne
   private Board board;

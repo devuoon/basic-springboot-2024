@@ -10,6 +10,8 @@ import com.devuoon.backboard.repository.MemberRepository;
 import com.devuoon.backboard.security.MemberRole;
 
 import lombok.RequiredArgsConstructor;
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +33,13 @@ public class MemberService {
         this.memberRepository.save(member);
 
         return member;
+    }
+
+    public Member getMember(String username) throws Exception {
+        Optional<Member> member = this.memberRepository.findByUsername(username);
+        if(member.isPresent())
+            return member.get();
+        else 
+            throw new Exception("");
     }
 }

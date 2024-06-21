@@ -412,3 +412,13 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
         - /repository/MemberRepository.java find* 메서드 추가
         - /controller/MemberController.java login Get/Post 메서드 작성
         - 로그인은 post를 사용하지 않고, Spring Security가 지원하는 UserDetailsService클래스 사용
+        - /service/MemberSecurityService.java - 로그인은 post를 사용하지 않고, Spring security가 지원하는 UserDetailsService인터페이스 활용
+        - /sercurity/SecurityConfig.java 계정관리자 빈 추가
+        - /template/layout.html 로그인/로그아웃 토글 메뉴 추가
+        
+      3. 게시글 작성자 추가
+        - /entity/Board.java, /entity/Reply.java에 작성자 변수(속성) 추가
+        - /service/MemberService.java getMember() 메서드
+        - (Tip) default Exception으로 예외를 처리하면 메서드 뒤에 항상 throws  Exception을 적어줘야 함.
+        - /common/DataNotFoundException.java 생성 -> throws Exception 쓰는데 반영
+        
