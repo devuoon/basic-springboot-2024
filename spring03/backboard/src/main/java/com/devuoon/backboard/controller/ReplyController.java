@@ -50,12 +50,12 @@ public class ReplyController {
             model.addAttribute("board", board);
             return "board/detail";
         }
-        this.replyService.setReply(board, replyForm.getContent(), writer);
-        log.info("ReplyController 댓글저장 처리완료!!");
-        return String.format("redirect:/board/detail/%s", bno);
+        Reply reply = this.replyService.setReply(board, replyForm.getContent(), writer);
+        //log.info("ReplyController 댓글저장 처리완료!!");
+        return String.format("redirect:/board/detail/%s#reply_%s", bno, reply.getRno());
     }
 
-      @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{rno}")
     public String modify(ReplyForm replyFrom, @PathVariable("rno") Long rno, Principal principal) {
         Reply reply = this.replyService.getReply(rno);
@@ -91,7 +91,8 @@ public class ReplyController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
         }
         this.replyService.remReply(reply);
-        return String.format("redirect:/board/detail/%s", reply.getBoard().getBno());
+        return String.format("redirect:/board/detail/%s#reply_%s", 
+        reply.getBoard().getBno(), reply.getRno());
     }
     
 }

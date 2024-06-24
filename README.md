@@ -434,7 +434,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
     ## 9일차
       - Spring Boot JPA 프로젝트 개발 계속
-        - 수정, 삭제
+        1. 수정, 삭제
           - /entity/Board, Reply.java 수정일자 필드추가
           - /template/board/detail.html 수정, 삭제버튼 추가
             - sec:authorize="isAuthenticated() 없으면 500 에러
@@ -452,10 +452,23 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
           - /template/board/detail.html 댓글 수정, 삭제버튼 추가
           - /service/ReplyService.java 
           - /controller/ReplyController.java modify GET, POST 메서드, 삭제 GET 메서드 작성
+          - /template/reply/modify.html 생성, 작성
+          - /template/board/detail.html 게시글, 댓글 수정날짜 표시
 
-        - 앵커기능
-        - 마크다운 적용, 마크다운에디터 추가
-        - 검색기능
+        2. 앵커기능
+          - 추가, 수정, 삭제 시 이전 자신의 위치로 되돌아가는 기능
+          - /template/board/detail.html 댓글마다 앵커링 추가
+          - /controller/ReplyController.java modify() Post매핑, return에 앵커링 추가
+          - /service/ReplyService.java 생성메서드 void -> Reply 변경
+          - /controller/ReplyController.java create Post메서드 변경
+
+          -/controller/ReplyController.java detail() 메서드 수정
+
+        3. 검색 기능
+          - /service/BoardService.java search() 메서드 추가
+        
+        4. 마크다운 적용
+          - 마크다운 뷰, 마크다운 에디터
         - 카테고리 추가(게시판, QnA, 공지사항)
         - 비밀번호 찾기, 비밀번호 변경
         - 조회수 추가

@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j2;
 public class ReplyService {
     private final ReplyRepository replyRepository;
 
-    public void setReply(Board board, String content, Member writer) {
+    public Reply setReply(Board board, String content, Member writer) {
         Reply reply = Reply.builder()
                 .content(content)
                 .createDate(LocalDateTime.now())
@@ -30,6 +30,8 @@ public class ReplyService {
         reply.setWriter(writer); // 작성자 추가
         this.replyRepository.save(reply);
         log.info("댓글 객체 저장성공");
+
+        return reply;
     }
 
     // 댓글 수정하려고 댓글 가져오기

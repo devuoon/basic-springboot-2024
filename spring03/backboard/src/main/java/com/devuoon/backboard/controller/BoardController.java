@@ -22,8 +22,11 @@ import com.devuoon.backboard.service.MemberService;
 import com.devuoon.backboard.validation.BoardForm;
 import com.devuoon.backboard.validation.ReplyForm;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
 // import org.springframework.web.bind.annotation.RequestMethod;
 // import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequiredArgsConstructor
 @RequestMapping("/board") // Restful URL은 /board로 시작
 @Controller
+@Log4j2
 public class BoardController {
     
     private final BoardService boardService; // 중간 연결책 
@@ -60,9 +64,13 @@ public class BoardController {
 
     // 댓글 검증을 추가하려면 매개변수로 ReplyForm을 전달!!
     @GetMapping("/detail/{bno}")
-    public String detail(Model model, @PathVariable("bno") Long bno, ReplyForm replyForm) {
+    public String detail(Model model, @PathVariable("bno") Long bno, ReplyForm replyForm, HttpServletRequest request) {
+        // 이전페이지 변수에 담기
+        String prevUrl = request.getHeader("referrer");
+        log.info(String.format("▶▶▶▶현재 이전 페이지 : %s", prevUrl));
         Board board = this.boardService.getBoard(bno);
         model.addAttribute("board", board);
+        model.addAttribute("prevUrl", prevUrl);     // 이전 페이지 URL 뷰어 전달
         return "board/detail";
     }
 
