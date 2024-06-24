@@ -437,7 +437,22 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
         - 수정, 삭제
           - /entity/Board, Reply.java 수정일자 필드추가
           - /template/board/detail.html 수정, 삭제버튼 추가
-            - sec:authorize="isAuthenticated() 없으면 500 에러"
+            - sec:authorize="isAuthenticated() 없으면 500 에러
+          - /controller/BoardController.java modify() GET 메서드 작성
+          - /template/board/create.html th:action을 삭제
+            - create.html 생성, 수정할 때 모두 사용
+            - get이 /board/create로 들어가면 post도 같은 url로 실행되고, /board/modify/{bno}로 페이지를 들어가면 post도 같은 url로 실행
+          - /service/BoardService.java 수정관련 메서드 추가작성
+          - /controller/BoardController.java modify() POST 메서드 작성
+            - html에는 BoardForm 객체 값이 들어있음. 컨트롤러에 받아서 Board객체 다시 만들어 서비스로 전달
+          
+          - /service/BoardService.java 삭제관련 메서드 추가
+          - /controller/BoardController.java delete() GET 메서드 작성
+
+          - /template/board/detail.html 댓글 수정, 삭제버튼 추가
+          - /service/ReplyService.java 
+          - /controller/ReplyController.java modify GET, POST 메서드, 삭제 GET 메서드 작성
+
         - 앵커기능
         - 마크다운 적용, 마크다운에디터 추가
         - 검색기능

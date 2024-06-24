@@ -5,6 +5,7 @@ import java.security.Principal;
 // import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.devuoon.backboard.entity.Board;
 import com.devuoon.backboard.entity.Member;
+import com.devuoon.backboard.entity.Reply;
 import com.devuoon.backboard.service.BoardService;
 import com.devuoon.backboard.service.MemberService;
 import com.devuoon.backboard.validation.BoardForm;
@@ -26,8 +28,11 @@ import lombok.RequiredArgsConstructor;
 // import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -79,6 +84,46 @@ public class BoardController {
         Member writer = this.memberService.getMember(principal.getName());  // 현재 로그인 사용자 아이디
         // this.boardService.setBoard(title, content);
         this.boardService.setBoard(boardForm.getTitle(), boardForm.getContent(), writer);
+        return "redirect:/board/list";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/modify/{bno}")
+    public String modify(BoardForm boardForm, @PathVariable("bno") Long bno, Principal principal) {
+        Board board = this.boardService.getBoard(bno); // 기존 게시글 가져옴
+        if(!board.getWriter().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
+        }
+        boardForm.setTitle(board.getTitle());
+        boardForm.setContent(board.getContent());
+        return "board/create";
+    }
+    
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/modify/{bno}")
+    public String modify(@Valid BoardForm boardForm,
+                        BindingResult bindingResult,
+                        Principal principal,
+                        @PathVariable("bno") Long bno) throws Exception {
+    if (bindingResult.hasErrors()) {
+        return "board/create";  // 현재 html에 그대로 머무르기
+    }
+    Board board = this.boardService.getBoard(bno);
+    if(!board.getWriter().getUsername().equals(principal.getName())){
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+    }
+    this.boardService.modBoard(board, boardForm.getTitle(), boardForm.getContent());
+        return String.format("redirect:/board/detail/%s", bno);
+    }
+    
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{bno}")
+    public String delete(@PathVariable("bno") Long bno, Principal principal) {
+        Board board = this.boardService.getBoard(bno);
+        if(!board.getWriter().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+        this.boardService.remBoard(board);
         return "redirect:/board/list";
     }
     
