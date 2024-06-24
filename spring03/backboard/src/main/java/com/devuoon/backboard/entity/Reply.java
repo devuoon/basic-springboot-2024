@@ -15,6 +15,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Getter
 @Setter
@@ -34,6 +35,10 @@ public class Reply {
   @CreatedDate
   @Column(name = "createDate", updatable = false)
   private LocalDateTime createDate;
+
+  @LastModifiedDate
+  @Column(name="modifyDate", updatable = true)
+  private LocalDateTime modifyDate; // 글수정일
 
   // 사용자가 여러개의 게시글을 작성할 수 있다. 다대일 설정
   @ManyToOne

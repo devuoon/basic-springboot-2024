@@ -19,6 +19,15 @@
               th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"
             ></div>
           </div>
+          
+        </div>
+     <!-- 수정, 삭제 버튼 영역 -->
+        <div th:if="${board.writer != null and #authentication.getPrincipal().getUsername() == board.writer.username}" 
+            sec:authorize="isAuthenticated()" class="mt-2 justify-content-end">
+            <a th:href="@{|/board/modify/${board.bno}|}" class="btn btn-sm btn-outline-success mx-2">수정</a>
+            <a th:data-uri="@{|/board/delete/${board.bno}|}"
+            href="javascript:void(0);" class="btn btn-sm btn-outline-danger">삭제</a>
+        </div>
         </div>
       </div>
     </div>
@@ -76,4 +85,17 @@
       </div>
     </form>
   </div>
+
+  <script layout:fragment="sub-script" type="text/javascript">
+    
+    const del_elements = document.getElementsByClassName("delete");
+
+    Array.from(del_elements).forEach((element) => {
+      element.addEventListener("click", (event) => {
+        if (confirm("정말 삭제하시겠습니까?")) {
+          location.href = event.target.dataset.uri;
+        }
+      });
+    })
+  </script>
 </html>

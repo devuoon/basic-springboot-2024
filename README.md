@@ -435,11 +435,13 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     ## 9일차
       - Spring Boot JPA 프로젝트 개발 계속
         - 수정, 삭제
+          - /entity/Board, Reply.java 수정일자 필드추가
+          - /template/board/detail.html 수정, 삭제버튼 추가
+            - sec:authorize="isAuthenticated() 없으면 500 에러"
         - 앵커기능
         - 마크다운 적용, 마크다운에디터 추가
         - 검색기능
         - 카테고리 추가(게시판, QnA, 공지사항)
         - 비밀번호 찾기, 비밀번호 변경
         - 조회수 추가
-
         - AWS 라이트세일
