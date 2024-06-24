@@ -24,6 +24,7 @@ import com.devuoon.backboard.validation.ReplyForm;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -49,22 +50,32 @@ public class BoardController {
     private final MemberService memberService;   // 사용자 정보
 
       // @RequestMapping("list", method=RequestMethod.GET) 아래와 동일
-    @GetMapping("/list")
-    // @RequestMapping("/list", method=RequestMethod.GET)
-    // Model -> controller에 있는 객체를 View로 보내주는 역할을 하는 객체
-    public String list(Model model, @RequestParam(value ="page", defaultValue = "0") int page) {
-        // List<Board> boardList = this.boardservice.getList();
-        // model.addAttribute("boardList", boardList); // thymeleaf, mustache, jsp 등 view로 보내는 기능
+//     @GetMapping("/list")
+//     // @RequestMapping("/list", method=RequestMethod.GET)
+//     // Model -> controller에 있는 객체를 View로 보내주는 역할을 하는 객체
+//     public String list(Model model, @RequestParam(value ="page", defaultValue = "0") int page) {
+//         // List<Board> boardList = this.boardservice.getList();
+//         // model.addAttribute("boardList", boardList); // thymeleaf, mustache, jsp 등 view로 보내는 기능
     
-    Page<Board> paging = this.boardService.getList(page);   
-    model.addAttribute("paging", paging);    // 페이징된 보드를 view로 전달
-    return "board/list"; // templates/board/list.html 렌더링해서 리턴하라
-  }
+//     Page<Board> paging = this.boardService.getList(page);   
+//     model.addAttribute("paging", paging);    // 페이징된 보드를 view로 전달
+//     return "board/list"; // templates/board/list.html 렌더링해서 리턴하라
+//   }
+
+    // 24.06.24 list 새로 변경
+    @GetMapping("/list")
+    public String list(Model model, @RequestParam(value ="page", defaultValue = "0") int page,
+                        @RequestParam(value = "kw", defaultValue = "") String keyword) {
+    Page<Board> paging = this.boardService.getList(page, keyword);   
+    model.addAttribute("paging", paging); 
+    model.addAttribute("kw", keyword);
+    return "board/list";
+    }
 
 
     // 댓글 검증을 추가하려면 매개변수로 ReplyForm을 전달!!
     @GetMapping("/detail/{bno}")
-    public String detail(Model model, @PathVariable("bno") Long bno, ReplyForm replyForm, HttpServletRequest request) {
+    public String detail(Model model, @PathVariable("bno") Long bno, ReplyForm replyForm, HttpServletRequest request) throws NotFoundException {
         // 이전페이지 변수에 담기
         String prevUrl = request.getHeader("referrer");
         log.info(String.format("▶▶▶▶현재 이전 페이지 : %s", prevUrl));
@@ -97,7 +108,7 @@ public class BoardController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{bno}")
-    public String modify(BoardForm boardForm, @PathVariable("bno") Long bno, Principal principal) {
+    public String modify(BoardForm boardForm, @PathVariable("bno") Long bno, Principal principal) throws NotFoundException {
         Board board = this.boardService.getBoard(bno); // 기존 게시글 가져옴
         if(!board.getWriter().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
@@ -126,7 +137,7 @@ public class BoardController {
     
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{bno}")
-    public String delete(@PathVariable("bno") Long bno, Principal principal) {
+    public String delete(@PathVariable("bno") Long bno, Principal principal) throws NotFoundException {
         Board board = this.boardService.getBoard(bno);
         if(!board.getWriter().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");

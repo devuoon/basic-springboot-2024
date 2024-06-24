@@ -466,6 +466,9 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
         3. 검색 기능
           - /service/BoardService.java search() 메서드 추가
+          - /repository/BoardRepository.java findAll() 메서드 추가
+          - /service/BoardService.java getList() 메서드 추가 
+          - /controller/BoardController.java list() 메서드 추가
         
         4. 마크다운 적용
           - 마크다운 뷰, 마크다운 에디터
