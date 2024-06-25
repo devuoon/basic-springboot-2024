@@ -13,6 +13,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.devuoon.backboard.entity.Board;
+import com.devuoon.backboard.entity.Category;
 import com.devuoon.backboard.entity.Member;
 import com.devuoon.backboard.entity.Reply;
 import com.devuoon.backboard.repository.BoardRepository;
@@ -53,6 +54,17 @@ public class BoardService {
         // Specification<Board> spec = searchBoard(keyword);
         // return this.boardRepository.findAll(spec, pageable); // 쿼리 생성로직 만들어서
         return this.boardRepository.findAllByKeyword(keyword, pageable);
+    }
+
+    // 24.06.24 카테고리 추가
+    public Page<Board> getList(int page, String keyword, Category category) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts)); 
+        
+        Specification<Board> spec = searchBoard(keyword, category.getId());
+        return this.boardRepository.findAll(spec, pageable); // 쿼리 생성로직 만들어서
+        // return this.boardRepository.findAllByKeyword(keyword, pageable);
     }
 
     public Board getBoard(Long bno) throws NotFoundException {
@@ -100,6 +112,28 @@ public class BoardService {
                 return cb.or(cb.like(b.get("title"),"%" + keyword + "%"),     // 게시글 제목에서 검색
                              cb.like(b.get("content"),"%" + keyword + "%"),   // 게시글 내용에서 검색
                              cb.like(r.get("content"),"%" + keyword + "%"));  // 댓글 내용에서 검색
+            }
+
+        };
+    }
+
+    // 카테고리 추가된 메서드
+    public Specification<Board> searchBoard(String keyword, Integer cateId) {
+        return new Specification<Board>() {
+            private static final long serialVersionUID = 1L;   // 필요한 값이라서 추가
+
+            @Override
+            @Nullable
+            public Predicate toPredicate(Root<Board> b, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                // query를 JPA로 생성
+                query.distinct(true);
+                Join<Board, Reply> r = b.join("replyList", JoinType.LEFT);
+
+                return cb.and(cb.equal(b.get("category").get("id"), cateId),
+                cb.or(cb.like(b.get("title"),"%" + keyword + "%"),     // 게시글 제목에서 검색
+                cb.like(b.get("content"),"%" + keyword + "%"),   // 게시글 내용에서 검색
+                cb.like(r.get("content"),"%" + keyword + "%") // 댓글 내용에서 검색))
+                ));
             }
 
         };

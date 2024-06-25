@@ -72,6 +72,17 @@ public class BoardController {
     return "board/list";
     }
 
+    @GetMapping("/list/category")
+    public String list(Model model, 
+                        @PathVariable(value = "category") String category,
+                        @RequestParam(value = "page", defaultValue = "0") int page,
+                        @RequestParam(value = "kw", defaultValue = "") String keyword) {
+    Page<Board> paging = this.boardService.getList(page, keyword);   
+    model.addAttribute("paging", paging); 
+    model.addAttribute("kw", keyword);
+    return "board/list";
+    }
+
 
     // 댓글 검증을 추가하려면 매개변수로 ReplyForm을 전달!!
     @GetMapping("/detail/{bno}")

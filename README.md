@@ -495,7 +495,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
           <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/sp009.png" width="730">
 
-          
+
 
           <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/sp010.png" width="730">
 
@@ -503,11 +503,12 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
       3. 카테고리 추가
         - /entity/Category.java 클래스 추가
         - /repository/CategoryRepository.java 인터페이스 추가
-        - /service/CategoryService.java 추가
-        - /service/BoardService.java 조회조건에 카테고리 추가 수정
+        - /service/CategoryService.java 생성
+        - /entity/Board.java에 category 속성을 추가
+        - /service/BoardService.java getList(), searchBoard() 추가생성         
         - 카테고리를 자유게시판, 질문응답게시판 분리
-        - /templates/layout.html navbar.html 추가 기입
-        - /controller/BoardController.java GetMapping 메서드에 카테고리를 추가
+        - /templates/layout.html 사이드바 태그 추가 기입
+        - /controller/BoardController.java CategoryService, GetMapping 메서드에 카테고리를 추가
 
       
       4. 조회수 표시
