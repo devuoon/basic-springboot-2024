@@ -50,8 +50,9 @@ public class BoardService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts)); 
         
-        Specification<Board> spec = searchBoard(keyword);
-        return this.boardRepository.findAll(spec, pageable);
+        // Specification<Board> spec = searchBoard(keyword);
+        // return this.boardRepository.findAll(spec, pageable); // 쿼리 생성로직 만들어서
+        return this.boardRepository.findAllByKeyword(keyword, pageable);
     }
 
     public Board getBoard(Long bno) throws NotFoundException {
