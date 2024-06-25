@@ -24,7 +24,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import javassist.NotFoundException;
+import com.devuoon.backboard.common.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 
@@ -67,7 +67,7 @@ public class BoardService {
         // return this.boardRepository.findAllByKeyword(keyword, pageable);
     }
 
-    public Board getBoard(Long bno) throws NotFoundException {
+    public Board getBoard(Long bno) {
         Optional<Board> board = this.boardRepository.findById(bno);
         if (board.isPresent()) { // 데이터가 존재하면
             return board.get();
@@ -76,10 +76,21 @@ public class BoardService {
         }
     }
 
-    // 24.06. 
+    // 24.06.21. Member 추가
     public void setBoard(String title, String content, Member writer) {
         // 빌더로 생성한 객체
         Board board = Board.builder().title(title).content(content).createDate(LocalDateTime.now()).build();
+        board.setWriter(writer);
+        this.boardRepository.save(board);   // PK가 없으면 INSERT
+    }
+
+    // 24.06.25 category 저장 추가
+    public void setBoard(String title, String content, Member writer, Category category) {
+        // 빌더로 생성한 객체
+        Board board = Board.builder().title(title).content(content)
+                      .createDate(LocalDateTime.now()).build();
+        
+        board.setCategory(category);    // 카테고리 추가
         board.setWriter(writer);
         this.boardRepository.save(board);   // PK가 없으면 INSERT
     }
