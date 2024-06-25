@@ -491,6 +491,9 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
         -(설정) build.gradle 마크다운 디펜던시 추가
         - /common/ComoonUtil.java 생성
         - /templates/board/detail.html 마크다운 뷰어 적용
+          <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/sp009.png" width="730">
+
+          <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/sp010.png" width="730">
 
 
       3. 카테고리 추가
@@ -500,7 +503,16 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
         - /service/BoardService.java 조회조건에 카테고리 추가 수정
         - 카테고리를 자유게시판, 질문응답게시판 분리
         - /templates/layout.html navbar.html 추가 기입
-        
+        - /controller/BoardController.java GetMapping 메서드에 카테고리를 추가
+
+      
+      4. 조회수 표시
+        - /entity/Board.java 조회수 필드 추가
+        - /service/BoardService.java 메서드 추가
+        - /controller/BoardController.java detail() 메서드 수정
+        - /template/board/list.html 조회수 컬럼 추가
+
+
 
         - 카테고리 추가(게시판, QnA, 공지사항)
         - 비밀번호 찾기, 비밀번호 변경
