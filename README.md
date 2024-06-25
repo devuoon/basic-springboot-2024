@@ -491,6 +491,8 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
         -(설정) build.gradle 마크다운 디펜던시 추가
         - /common/ComoonUtil.java 생성
         - /templates/board/detail.html 마크다운 뷰어 적용
+
+        
           <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/sp009.png" width="730">
 
           <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/sp010.png" width="730">
