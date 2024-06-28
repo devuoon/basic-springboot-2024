@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.devuoon'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.1-SNAPSHOT'
 
 java {
 	toolchain {
@@ -48,6 +48,9 @@ dependencies {
   implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	// 마크다운 뷰어 디펜던시
 	implementation 'org.commonmark:commonmark:0.21.0'
+	// 메일전송 디펜던시
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework:spring-context-support'
 	
 }
 
