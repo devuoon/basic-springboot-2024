@@ -24,27 +24,28 @@ import org.springframework.data.annotation.LastModifiedDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reply {
-  
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private Long rno;
 
-  @Column(name="content", length=1000)
-  private String content;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long rno;
 
-  @CreatedDate
-  @Column(name = "createDate", updatable = false)
-  private LocalDateTime createDate;
+    @Column(name = "content", length = 1000)
+    private String content;
 
-  @LastModifiedDate
-  @Column(name="modifyDate", updatable = true)
-  private LocalDateTime modifyDate; // 글수정일
+    @CreatedDate
+    @Column(name = "createDate", updatable = false)
+    private LocalDateTime createDate; // 글생성일
 
-  // 사용자가 여러개의 게시글을 작성할 수 있다. 다대일 설정
-  @ManyToOne
-  private Member writer;
+    @LastModifiedDate
+    @Column(name = "modifyDate")
+    private LocalDateTime modifyDate; // 24.06.24 수정일 추가
 
-  //중요, RelationShip
-  @ManyToOne
-  private Board board;
+    // 중요, ERD로 DB를 설계하지 않고 엔티티클래스로 관계를 형성하려면 반드시 사용
+    // RelationShip 다대일 설정.
+    @ManyToOne
+    private Board board;
+
+    // 사용자가 여러개의 게시글을 작성할 수 있다. 다대일 설정
+    @ManyToOne
+    private Member writer; 
 }
