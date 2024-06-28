@@ -13,7 +13,7 @@ import org.springframework.data.jpa.domain.Specification; // 복합쿼리 생성
 
 import org.springframework.stereotype.Service;
 
-import com.devuoon.backboard.common.NotFoundException;
+import com.devuoon.backboard.controller.common.NotFoundException;
 import com.devuoon.backboard.entity.Board;
 import com.devuoon.backboard.entity.Category;
 import com.devuoon.backboard.entity.Member;

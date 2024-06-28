@@ -16,10 +16,12 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+//@Transactional(readOnly = true)
 public class MailService {
     
     private final JavaMailSender javaMailSender;
+    // ResetService는 예외
+    private final ResetService resetService;
     // private final PasswordEncoder passwordEncoder;
     // 메일에서 초기화할 화면으로 이동 URL
     private String resetPassUrl = "http://localhost:8080/member/reset-password";
@@ -54,6 +56,7 @@ public class MailService {
         }
     }
 
+    // 패스워드 
     public Boolean sendResetPasswordEmail(String email) {
         String uuid = makeUuid();
         String subject = "요청하신 비밀번호 재설정입니다";
@@ -64,11 +67,17 @@ public class MailService {
 
         try {
             sendMail(email, subject, message);
+
+            saveUuidAndEmail(uuid, email);
             return true;
         } catch (Exception e) {
             return false;
         }
         
+    }
+
+    private void saveUuidAndEmail(String uuid, String email) {
+      this.resetService.setReset(uuid, email);
     }
 
 }

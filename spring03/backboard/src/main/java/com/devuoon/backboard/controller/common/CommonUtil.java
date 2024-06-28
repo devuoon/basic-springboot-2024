@@ -1,4 +1,4 @@
-package com.devuoon.backboard.common;
+package com.devuoon.backboard.controller.common;
 
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;

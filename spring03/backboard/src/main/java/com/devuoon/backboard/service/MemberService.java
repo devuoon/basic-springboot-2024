@@ -4,7 +4,7 @@ package com.devuoon.backboard.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.devuoon.backboard.common.NotFoundException;
+import com.devuoon.backboard.controller.common.NotFoundException;
 import com.devuoon.backboard.entity.Member;
 import com.devuoon.backboard.repository.MemberRepository;
 import com.devuoon.backboard.security.MemberRole;
@@ -20,6 +20,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
+    // 새로운 사용자 생성
     public Member setMember(String username, String email, String password) {
         Member member = Member.builder().username(username).email(email).regDate(LocalDateTime.now()).build();
 
@@ -34,6 +35,12 @@ public class MemberService {
 
         return member; 
     }
+
+    // 기존 사용자 비밀번호 초기화
+    public void setMember(Member member) {
+        member.setPassword(passwordEncoder.encode(member.getPassword())); //Bcrypt암호화
+        this.memberRepository.save(member);     // 업데이트
+      }
 
     // 사용자를 가져오는 메서드
     public Member getMember(String username) {
@@ -52,4 +59,6 @@ public class MemberService {
         else
             throw new NotFoundException("Member not found!");
     }
+
+   
 }

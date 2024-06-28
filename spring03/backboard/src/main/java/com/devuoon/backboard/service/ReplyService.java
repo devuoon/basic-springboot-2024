@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.devuoon.backboard.common.NotFoundException;
+import com.devuoon.backboard.controller.common.NotFoundException;
 import com.devuoon.backboard.entity.Board;
 import com.devuoon.backboard.entity.Member;
 import com.devuoon.backboard.entity.Reply;
