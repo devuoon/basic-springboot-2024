@@ -1,36 +1,36 @@
 package com.devuoon.backboard.repository;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
-// import org.junit.jupiter.api.Test;
-// import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-// import com.devuoon.backboard.entity.Board;
-// import com.devuoon.backboard.service.BoardService;
+import com.devuoon.backboard.entity.Board;
+import com.devuoon.backboard.service.BoardService;
 
-// // import java.util.List;
-// import java.util.Optional;
+// import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class BoardRepositoryTests {
     // JUnit 테스트
-    // @Autowired
-    // private BoardRepository boardRepository;
+    @Autowired
+    private BoardRepository boardRepository;
 
-    // @Autowired
-    // private BoardService boardService;
+    @Autowired
+    private BoardService boardService;
     
     // @Test
-    // void testThreeHundredBoards() {
-    //     for (int i = 0; i < 400; i++) {
-    //         this.boardService.setBoard(String.format("테스트 데이터 - [%03d]", i + 1),
-    //                                         "별 내용 없습니다.", null);
-    //     }
-    // }
+    void testThreeHundredBoards() {
+        for (int i = 0; i < 400; i++) {
+            this.boardService.setBoard(String.format("테스트 데이터 - [%03d]", i + 1),
+                                            "별 내용 없습니다.", null);
+        }
+    }
     
     // @Test
     // void testInsertBoard() {

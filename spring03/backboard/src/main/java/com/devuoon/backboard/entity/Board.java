@@ -46,20 +46,20 @@ public class Board {
 
     @LastModifiedDate
     @Column(name = "modifyDate")
-    private LocalDateTime modifyDate; // 24.06.24 수정일 추가
+    private LocalDateTime modifyDate;   // 2024.06.24 수정일 추가
 
-    // @ColumnDefault("0") // 생성될때 초기값 0이 들어감
+    // @ColumnDefault("0") // 생성될 때 초기값 0이 들어감
     // @Column(columnDefinition = "integer default 0")
-    private Integer hit; // 24.06.26 조회수 추가
+    private Integer hit;    // 24.06.26 조회수 추가
 
     // 사용자가 여러개의 게시글을 작성할 수 있다. 다대일 설정
     @ManyToOne
-    private Member writer; 
+    private Member writer;
 
     // 중요, RelationShip 일대다 설정
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Reply> replyList;
 
     @ManyToOne
-    private Category category; // free, qna로 구분해서 글생성 가능
+    private Category category;  // free, qna로 구분해서 글생성 가능
 }

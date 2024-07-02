@@ -792,7 +792,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- map() 을 쓰면 for문보다 짧게 구현 가능
 		- 각 child 요소마다 key 속성이 필요(없으면 경고!)
 
-			<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/react001.png" width="730">
+			<img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/react001.png" width="730">
 
 	7. 이벤트 핸들링
 		- form + onSubmit, tag + onClick
@@ -804,7 +804,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 		- props 속성
 		- props.속성이름.key이름 
 
-			<img src="https://raw.githubusercontent.com/hugoMGSung/basic-springboot-2024/main/images/react002.png" width="730">
+			<img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/react002.png" width="730">
 
 	9. 화면 업데이트
 		- useState : 앱 화면의 상태를 기억하고, 사용하기 위한 
@@ -859,22 +859,26 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     - index.js, reportWebVitals() 삭제
     - index.js, <React.StrictMode> 삭제 또는 주석
     - /src/layout/Header.js , Footer.js를 생성
+    - /src/routes/Home.js, BoardList.js, QnaList.js, Login.js 추가
+    - App.js Route 될 화면추가
+    - Header.js에 react-router-dom 추가, Link, useNavigate 사용
+  
+  5. backboard RestAPI 추가
+    - /restcontroller/RestBoardController.java 생성, BoardController에 있는 메서드 복사
+    - (문제) Spring Boot와 Rest API 간의 리턴데이터 차이 때문에 100% 호환안됨
+     - (문제) Spring Boot에서 만든 Entity는 Board와 Reply 등의 OneToMany / ManyToOne 가 JSON으로 변환할 때 문제가 발생!
+    - /Entity를 그대로 사용하지 말고, RestAPI에서는 다른 클래스를 만들어야 함
+    - /dto/BoardDto.java 생성
+    - /dto/ReplyDto.java 생성
+    - /RestBoardController.java getList()를 Board Entity -> BoardDto로 변경
+    - /security/SecurityConfig.java CORS 설정 추가
+  
+  6. frontboard 개발 계속
+    - /BoardList.js axios RestAPI 호출내용 추가
+    - 테이블 내용을 boardList.map() 10개 리스트 디스플레이
+      <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/react003.png" width="730">
 
-
-
-
-
-
-
-
-
-
-
-	3. 구글 로그인
-		- https://console.cloud.google.com/ 구글클라우드 콘솔
-		- 프로젝트 생성
-		- OAuth 동의화면 설정
-		- 개발 계속...
+   
 
 
 ## 계속

@@ -7,10 +7,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
 import React from 'react';
 
+// 만든 화면 추가
+import Home from './routes/Home';
+import BoardList from './routes/BoardList';
+import QnaList from './routes/QnaList';
+import Login from './routes/Login';
+
 function App() {
   return (
     <Routes>
-      <Route />
+      {/* a,Link 링크를 누르면 화면전환될 페이지 */}
+      <Route path="/home" element={<Home/>}/>
+      <Route path="/boardList" element={<BoardList/>}/>
+      <Route path="/qnaList" element={<QnaList/>}/>
+      <Route path="/login" element={<Login/>}/>
     </Routes>
   );
 }

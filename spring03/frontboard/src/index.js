@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // 만든 페이지 추가
 import Header from './layout/Header'
+import Footer from './layout/Footer'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,8 +18,11 @@ root.render(
         {/* head */}
         <Header />
         {/* main-content */}
-        <App />
+        <div id="main-content" className='flex-1 main'>
+          <App />
+        </div>
         {/* footer */}
+        <Footer />
       </div>
     </BrowserRouter>
   </div>

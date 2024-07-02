@@ -125,6 +125,7 @@ public class BoardController {
                          @PathVariable("category") String category,
                          BoardForm boardForm) {
         model.addAttribute("category", category); 
+        log.info("category create Form");
         return "board/create";
     }
 
