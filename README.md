@@ -901,5 +901,12 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
       - (Front) /BoardList.js 제목 수정
       - /routes/BoardDetail.js 생성
 
+## 16일차
+    - Spring Boot React연동 프로젝트 개발 계속
+    1. 로그인
+
+    2. 상세화면 완료
+
+    3. 입력화면
 
 
