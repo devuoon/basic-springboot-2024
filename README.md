@@ -886,6 +886,8 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 
     2. 페이징
       - (Backend) /dto/PagingDto.java 생성
-      - (Backend) /common/Header.java 생성
+      - (Backend) /dto/Header.java 생성
+      - RestBoardController.java list() 수정 List<BoardDto> -> Header<List<BoardDto>> 로 형변환
+      - (Frontend) /BoardList.js 변수 부분 수정
     3.  
 

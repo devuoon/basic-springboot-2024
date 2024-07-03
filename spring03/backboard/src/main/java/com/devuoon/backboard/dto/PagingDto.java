@@ -43,7 +43,7 @@ public class PagingDto {
     this.totalListSize = totalListSize;
     // 변수값 계산
     // 전체 블럭 수 계산
-    this.totalPageNum = (int)Math.ceil(this.totalPageNum * 1.0 / this.pageSize);
+    this.totalPageNum = (int)Math.ceil(this.totalListSize * 1.0 / this.pageSize);
     // 현재 블럭 계산
     this.block = (int)Math.ceil((this.page) * 1.0 / blockSize);
     // 현재 블럭 시작페이지
@@ -51,15 +51,17 @@ public class PagingDto {
     // 현재블럭 마지막페이지
     this.endPage = this.startPage + blockSize - 1;
     // 블럭 마지막페이지 검증()
-    if (this.endPage > this.totalPageNum) this.endPage = this.totalBlockNum;
+    if(this.endPage > this.totalPageNum) this.endPage = this.totalPageNum;
     // 이전 블럭(클릭 시, 이전 블럭 마지막 페이지)
     this.prevBlock = (this.block * blockSize) - blockSize;
     // 이전 블럭 검증
     if (this.prevBlock < 1) this.prevBlock = 1;
+    // 다음블럭
+    this.nextBlock = (this.block * blockSize + 1);
     // 다음 블럭 검증
     if (this.nextBlock > this.totalPageNum) this.nextBlock = this.totalPageNum;    
     // 시작 인덱스 번호
     this.startIndex = (this.page - 1) * this.pageSize;
-    
+
   }
 }

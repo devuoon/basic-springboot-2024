@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devuoon.backboard.dto.BoardDto;
+import com.devuoon.backboard.dto.Header;
+import com.devuoon.backboard.dto.PagingDto;
 import com.devuoon.backboard.dto.ReplyDto;
 import com.devuoon.backboard.entity.Board;
 import com.devuoon.backboard.entity.Category;
@@ -36,13 +38,14 @@ public class RestBoardController {
 
     @GetMapping("/list/{category}")
     @ResponseBody
-    public List<BoardDto> list(@PathVariable(value = "category") String category,
+    public Header<List<BoardDto>> list(@PathVariable(value = "category") String category,
                         @RequestParam(value ="page", defaultValue = "0") int page,
                         @RequestParam(value = "kw", defaultValue = "") String keyword) {
 
         Category cate = this.categoryService.getCategory(category);     // cate는 Category 객체, 변수사용 X
-        Page<Board> paging = this.boardService.getList(page, keyword, cate);   // 검색 및 카테고리 추가
+        Page<Board> pages = this.boardService.getList(page, keyword, cate);   // 검색 및 카테고리 추가
         // List<Board> list = paging.getContent();
+        PagingDto paging = new PagingDto(pages.getTotalElements(), pages.getNumber() + 1, 10, 10);
 
         List<BoardDto> result = new ArrayList<BoardDto>();
         // paging.forEach(board -> result.add(BoardDto.builder().bno(board.getBno())
@@ -54,7 +57,7 @@ public class RestBoardController {
         //                                                         .hit(board.getHit())
         //                                                         .build()));
 
-        for (Board origin : paging) {
+        for (Board origin : pages) {
             List<ReplyDto> subList = new ArrayList<>();
 
             BoardDto bdDto = new BoardDto();
@@ -63,7 +66,7 @@ public class RestBoardController {
             bdDto.setContent(origin.getContent());
             bdDto.setCreateDate(origin.getCreateDate());
             bdDto.setModifyDate(origin.getModifyDate());
-            bdDto.setWriter(origin.getWriter().getUsername());
+            bdDto.setWriter(origin.getWriter() != null ? origin.getWriter().getUsername(): "");
             bdDto.setHit(origin.getHit());
             if(origin.getReplyList().size() > 0){
                 for (Reply reply : origin.getReplyList()) {
@@ -72,7 +75,7 @@ public class RestBoardController {
                     replyDto.setContent(reply.getContent());
                     replyDto.setCreateDate(reply.getCreateDate());
                     replyDto.setModifyDate(reply.getModifyDate());
-                    replyDto.setWriter(reply.getWriter().getUsername());
+                    replyDto.setWriter(reply.getWriter() != null ? reply.getWriter().getUsername() : "");
 
                     subList.add(replyDto);
                 }
@@ -82,11 +85,15 @@ public class RestBoardController {
         }
 
         log.info(String.format(">>>>>> result에서 넘긴 게시글 수 %s", result.size()));
+        
         // model.addAttribute("paging", paging);
         // model.addAttribute("kw", keyword);
         // model.addAttribute("category", category);
 
-        return result;
+        // Header<> 에 담아줌
+        Header<List<BoardDto>> last = Header.OK(result, paging);
+
+        return last;
     }
 
     
