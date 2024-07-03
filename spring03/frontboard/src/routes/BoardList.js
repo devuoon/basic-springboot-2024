@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { userState, userEffect, useState, useEffect } from 'react';
 
 // Navigation
-//import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // 공통함수 추가
 import * as common from '../common/CommonFunc';
@@ -87,7 +87,9 @@ function BoardList() {  // 객체를 만드는 함수
                     {boardList.map((board) => (
                         <tr className='text-center' key={board.bno}>
                             <td>{board.num}</td>
-                            <td className='text-start'>{board.title}&nbsp;
+                            <td className='text-start'>
+                              <Link to={`/boardDetail/${board.bno}`}>{board.title}</Link>
+                              &nbsp;
                             {
                               board.replyList != null &&
                               <span class="badge text-bg-warning">{board.replyList.length}</span>

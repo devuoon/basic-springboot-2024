@@ -24,6 +24,4 @@ public class ReplyDto {
     private LocalDateTime modifyDate; 
 
     private String writer; 
-
-    private List<ReplyDto> replyList;
 }

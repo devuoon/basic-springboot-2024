@@ -74,7 +74,6 @@ public class RestBoardController {
                     replyDto.setCreateDate(reply.getCreateDate());
                     replyDto.setModifyDate(reply.getModifyDate());
                     replyDto.setWriter(reply.getWriter() != null ? reply.getWriter().getUsername() : "");
-
                     subList.add(replyDto);
                 }
                 bdDto.setReplyList(subList);
@@ -102,17 +101,24 @@ public class RestBoardController {
         log.info(String.format("▶▶▶▶▶ 현재 이전 페이지 : %s", prevUrl));        
         //Board board = this.boardService.getBoard(bno);
         Board _board = this.boardService.hitBoard(bno); // 조회수 증가하고 리턴
-        BoardDto board = BoardDto.builder().bno(_board.getBno()).title(_board.getTitle())
-                                           .content(_board.getContent()).createDate(_board.getCreateDate())
-                                           .modifyDate(_board.getModifyDate()).build();
+        BoardDto board = BoardDto.builder()
+                                 .bno(_board.getBno())
+                                 .title(_board.getTitle())
+                                 .content(_board.getContent())
+                                 .createDate(_board.getCreateDate())
+                                 .modifyDate(_board.getModifyDate())
+                                 .writer(_board.getWriter() != null ? _board.getWriter().getUsername() : "")
+                                 .build();
         List<ReplyDto> replyList = new ArrayList<>();
-        board.getReplyList().forEach(rpy -> replyList.add(ReplyDto.builder().content(rpy.getContent())
+        if (_board.getReplyList().size() > 0) {
+            _board.getReplyList().forEach(rpy -> replyList.add(ReplyDto.builder().content(rpy.getContent())
                                                          .createDate(rpy.getCreateDate())
                                                          .modifyDate(rpy.getModifyDate())
                                                          .rno(rpy.getRno())
-                                                         .writer(rpy.getWriter())
-                                                         .build()                             
-        ));
+                                                         .writer(rpy.getWriter() != null ? rpy.getWriter().getUsername() : "" )
+                                                         .build())); 
+        }
+
         board.setReplyList(replyList);
 
         return board;

@@ -898,6 +898,8 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     
     3. 상세화면
       - (Back) RestBoardController.java detail() 메서드 생성
+      - (Front) /BoardList.js 제목 수정
+      - /routes/BoardDetail.js 생성
 
 
 
