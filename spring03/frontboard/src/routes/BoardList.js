@@ -7,16 +7,31 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function BoardList() {  // 객체를 만드는 함수
-  // 변수 선언
-  var pageString = 'page=0';
+
   const [boardList, setBoardList] = useState([]);
 
   // 함수 선언
   // 제일 중요!!
   const getBoardList = async () => {
-    const resp = (await axios.get("//localhost:8080/api/board/list/free?" + pageString)).data;
-    setBoardList(resp);
-    console.log(boardList);
+    // 변수 선언
+    var pageString = 'page=0';
+
+    try {
+      const resp = (await axios.get("//localhost:8080/api/board/list/free?" + pageString));
+      
+      if (resp.status === 200) {
+        setBoardList(resp.data);
+        console.log(resp.data);
+      } else if (resp.status === 404){
+        alert('서버 페이지가 없습니다.');
+      } else if (resp.status === 500) {
+        alert('서버  오류 입니다.');
+      }
+    
+    } catch {
+      // console.error('>>' + error);
+      alert('서버가 연결되지 않았습니다.');
+    }
   } 
 
   useEffect(() => {

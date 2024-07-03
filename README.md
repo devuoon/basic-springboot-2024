@@ -878,15 +878,14 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     - 테이블 내용을 boardList.map() 10개 리스트 디스플레이
       <img src="https://raw.githubusercontent.com/devuoon/basic-springboot-2024/main/images/react003.png" width="730">
 
-   
+## 15일차
+  - Spring Boot React연동 프로젝트 개발 계속
+    1. Spring Boot 서버가 실행되지 않았을 때
+      - 프론트 서버부터 시작하면 Uncaught runtime error. 발생
+      - axios request가 예외발생 try - catch로 wrapping 해줘야 함
 
-
-## 계속
-- Spring Boot JPA 프로젝트
-	1. 남은 것
-		- 8080 -> 80 서버
-		- http -> https 변경
-
-	- 파일업로드 - AWS S3 체크
-	- 로그인한 사용자 헤더에 표시
+    2. 페이징
+      - (Backend) /dto/PagingDto.java 생성
+      - (Backend) /common/Header.java 생성
+    3.  
 
