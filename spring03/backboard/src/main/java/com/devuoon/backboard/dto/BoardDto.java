@@ -15,6 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardDto {
+
+    private Long num; // 게시글 번호
   
     private Long bno; // PK
 

@@ -885,9 +885,19 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
       - axios request가 예외발생 try - catch로 wrapping 해줘야 함
 
     2. 페이징
-      - (Backend) /dto/PagingDto.java 생성
-      - (Backend) /dto/Header.java 생성
+      - (Back) /dto/PagingDto.java 생성
+      - /dto/Header.java 생성
       - RestBoardController.java list() 수정 List<BoardDto> -> Header<List<BoardDto>> 로 형변환
-      - (Frontend) /BoardList.js 변수 부분 수정
-    3.  
+      - (Front) /BoardList.js 변수 부분 수정
+      - /common/CommonFunc.js 생성 - 작성일을 수정함수 formatDate() 작성
+      - /BoardList.js 날짜부분에 formatDate() 적용
+      - /BoardList.js 댓글 갯수 표시
+      - (Back) /dto/BoardDto.java 게시글 번호 담을 변수 추가
+      - RestBoardController.java 게시글번호 계산로직 추가
+      - (Front) /BoardList.js bno를 num로 변경
+    
+    3. 상세화면
+      - (Back) RestBoardController.java detail() 메서드 생성
+
+
 

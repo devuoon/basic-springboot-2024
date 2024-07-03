@@ -1,6 +1,7 @@
 package com.devuoon.backboard.restcontroller;
 
 import org.springframework.data.domain.Page;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,9 @@ import com.devuoon.backboard.entity.Reply;
 import com.devuoon.backboard.service.BoardService;
 import com.devuoon.backboard.service.CategoryService;
 import com.devuoon.backboard.service.MemberService;
+import com.devuoon.backboard.validation.ReplyForm;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -48,19 +51,14 @@ public class RestBoardController {
         PagingDto paging = new PagingDto(pages.getTotalElements(), pages.getNumber() + 1, 10, 10);
 
         List<BoardDto> result = new ArrayList<BoardDto>();
-        // paging.forEach(board -> result.add(BoardDto.builder().bno(board.getBno())
-        //                                                         .title(board.getTitle())
-        //                                                         .content(board.getContent())
-        //                                                         .createDate(board.getCreateDate())
-        //                                                         .modifyDate(board.getModifyDate())
-        //                                                         .writer(board.getWriter().getUsername())
-        //                                                         .hit(board.getHit())
-        //                                                         .build()));
+        long curNum = pages.getTotalElements() - (pages.getNumber() * 10); // 게시글 번호
 
         for (Board origin : pages) {
             List<ReplyDto> subList = new ArrayList<>();
 
             BoardDto bdDto = new BoardDto();
+            // 게시글 번호를 추가
+            bdDto.setNum(curNum--);
             bdDto.setBno(origin.getBno());
             bdDto.setTitle(origin.getTitle());
             bdDto.setContent(origin.getContent());
@@ -94,6 +92,30 @@ public class RestBoardController {
         Header<List<BoardDto>> last = Header.OK(result, paging);
 
         return last;
+    }
+
+    @GetMapping("/detail/{bno}")
+    @ResponseBody
+    public BoardDto detail(@PathVariable("bno") Long bno, HttpServletRequest request) {
+        
+        String prevUrl = request.getHeader("referer");  // 이전페이지 변수에 담기
+        log.info(String.format("▶▶▶▶▶ 현재 이전 페이지 : %s", prevUrl));        
+        //Board board = this.boardService.getBoard(bno);
+        Board _board = this.boardService.hitBoard(bno); // 조회수 증가하고 리턴
+        BoardDto board = BoardDto.builder().bno(_board.getBno()).title(_board.getTitle())
+                                           .content(_board.getContent()).createDate(_board.getCreateDate())
+                                           .modifyDate(_board.getModifyDate()).build();
+        List<ReplyDto> replyList = new ArrayList<>();
+        board.getReplyList().forEach(rpy -> replyList.add(ReplyDto.builder().content(rpy.getContent())
+                                                         .createDate(rpy.getCreateDate())
+                                                         .modifyDate(rpy.getModifyDate())
+                                                         .rno(rpy.getRno())
+                                                         .writer(rpy.getWriter())
+                                                         .build()                             
+        ));
+        board.setReplyList(replyList);
+
+        return board;
     }
 
     

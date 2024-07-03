@@ -56,7 +56,7 @@ public class PagingDto {
     this.prevBlock = (this.block * blockSize) - blockSize;
     // 이전 블럭 검증
     if (this.prevBlock < 1) this.prevBlock = 1;
-    // 다음블럭
+    // 다음 블럭
     this.nextBlock = (this.block * blockSize + 1);
     // 다음 블럭 검증
     if (this.nextBlock > this.totalPageNum) this.nextBlock = this.totalPageNum;    
