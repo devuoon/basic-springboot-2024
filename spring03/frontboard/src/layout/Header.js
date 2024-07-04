@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Header = () => {
+function Header () {
+
+  const navigate = useNavigate();
+
+  function gotoLogin() {
+    navigate('/login')
+  }
+
   // return은 화면을 그리겠다.
   return (
     <div className="container header">
@@ -19,8 +26,8 @@ const Header = () => {
         </ul>
 
         <div className='col-md-3 text-end'>
-          로그인
-          회원가입
+          <button type='button' className='btn btn-outline-primary me-2' onClick={gotoLogin}>로그인</button>
+          <button type='button' className='btn btn-primary'>회원가입</button>
         </div>
       </header>
     </div>

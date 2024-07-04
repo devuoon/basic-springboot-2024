@@ -22,3 +22,12 @@ code {
   min-height:300px;
   height: calc(100vh - 100% - 76px);
 }
+
+a{
+  text-decoration: none !important;
+  color:#000 !important;
+}
+
+a:hover{
+  text-decoration: underline !important;
+}

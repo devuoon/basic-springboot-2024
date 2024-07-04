@@ -904,6 +904,7 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
 ## 16일차
     - Spring Boot React연동 프로젝트 개발 계속
     1. 로그인
+      - (Front) layout/Header.js 로그인, 회원가입 버튼으로 변경
 
     2. 상세화면 완료
 
