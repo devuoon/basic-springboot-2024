@@ -916,9 +916,14 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
     2. 상세화면 완료
       - (Back) RestBoardController.java detail() 리턴값 변경
       - (Front) BoardDetail.js에서 axios로 가져오기
-      - (Front) 
 
-
-    3. 입력화면
+## 남은것
+  - 추가 개발 필요
+    1. (Front)입력화면
+    2. (Back)구글 로그인
+    3. (Back) 포트 변경 8080 ->  80 서버
+    4. (Back) Https 사용
+    5. (Back) 파일 업로드
+    6. 로그인한 사용자 헤더에 표시
 
 

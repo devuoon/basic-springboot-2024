@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 // 공통함수 추가
 import * as common from '../common/CommonFunc';
 
+
 function BoardList() {  // 객체를 만드는 함수
     // 변수선언, return | render() html, react 태그에서 반복할 때 사용됨
     const [boardList, setBoardList] = useState([]); // 배결값을 받아서 상태를 저장하기 때문에 []
