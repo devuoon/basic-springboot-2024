@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function Header () {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate();    // Hook 함수는 직접 사용불가
 
   function gotoLogin() {
     navigate('/login')
