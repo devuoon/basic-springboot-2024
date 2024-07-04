@@ -910,8 +910,14 @@ Java 빅데이터 개발자과정 Spring Boot 학습 리포지토리
       - MemberService.java, getMemberByUsernameAndPassword() 메서드 작성
       - Postman에서 테스트
       - (Front) Login.js axios 부분 작성
+      - Home.js, localStorage 사용해서 로그인 정보 출력
+      - Header.js 로그인버튼 -> 로그아웃
 
     2. 상세화면 완료
+      - (Back) RestBoardController.java detail() 리턴값 변경
+      - (Front) BoardDetail.js에서 axios로 가져오기
+      - (Front) 
+
 
     3. 입력화면
 
